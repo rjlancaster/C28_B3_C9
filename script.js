@@ -9,6 +9,8 @@ const foodAsHTML = (name, ethnicity, type) => `
 </div>
 `
 
+// I need to come back and figure out why my fragment function isn't working.  I'll tackle it later.
+
 fetch("http://localhost:8088/food/")
 .then(foods => foods.json())
 .then(json => {
@@ -25,11 +27,12 @@ fetch("http://localhost:8088/food/")
       // debugger
       let food = foodAsHTML(foodObject.name, foodObject.ethnicity, foodObject.type)
       // 7 Set A.appendChild(C)
-      fragment.appendChild(food);
+      // fragment.appendChild(food);
       // 8 close loop
+      addFoodToDom.innerHTML += food;
     }
     // 9 et B.appendChild(A)
-    addFoodToDom.appendChild(fragment);
+    // addFoodToDom.appendChild(fragment);
   })
   
   

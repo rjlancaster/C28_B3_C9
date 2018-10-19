@@ -1,0 +1,16 @@
+.foodList {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.foods {
+  border: 1px solid maroon;
+  margin: 5px;
+  align-content: center;
+  padding: 5px;
+}
+
+h1 {
+  text-align: center;
+}
