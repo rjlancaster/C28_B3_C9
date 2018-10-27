@@ -1,46 +1,53 @@
 {
   "food": [
     {
-      "id": 1,
       "name": "Linguine",
-      "type": "pasta",
-      "ethnicity": "italian"
+      "type": "Pasta",
+      "ethnicity": "American",
+      "id": 1,
+      "barcode": "0041190036677"
     },
     {
       "name": "Red Curry",
       "type": "curry",
       "ethnicity": "thai",
-      "id": 2
+      "id": 2,
+      "barcode": "0044738201698"
     },
     {
       "id": 3,
       "name": "Green curry",
       "type": "curry",
-      "ethnicity": "thai"
+      "ethnicity": "thai",
+      "barcode": "0044738102353"
     },
     {
       "id": 4,
       "name": "Ravioli Funghi",
       "type": "pasta",
-      "ethnicity": "italian"
+      "ethnicity": "italian",
+      "barcode": "29005369"
     },
     {
       "name": "Doritos",
       "type": "junk",
       "ethnicity": "American",
-      "id": 6
+      "id": 6,
+      "barcode": "8710398161987"
     },
     {
       "name": "Red Curry",
       "type": "curry",
       "ethnicity": "thai",
-      "id": 7
+      "id": 7,
+      "barcode": "0044738201698"
     },
     {
       "name": "Fried Chicken",
       "type": "Meat",
       "ethnicity": "American",
-      "id": 8
+      "id": 8,
+      "barcode": "0051000062765"
     }
   ]
 }

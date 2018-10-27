@@ -1,39 +1,41 @@
 
 
-// 1. this function isn't working in the loop below.  Why??
-const foodAsHTML = (name, ethnicity, type) => `
+const foodAsHTML = (name, ingredients, country, sugar) => `
 <div class="foods">
   <h2>${name}</h2>
-  <p>${ethnicity}</p>
-  <p>${type}</p>
+  <p>Ingredients: ${ingredients}</p>u
+  <p>Country of origin: ${country}</p>
+  <p>Sugar per serving: ${sugar}</p>
 </div>
 `
-
-// I need to come back and figure out why my fragment function isn't working.  I'll tackle it later.
-
 fetch("http://localhost:8088/food/")
 .then(foods => foods.json())
 .then(json => {
   console.table(json)
-  // 2 create const A which acts as fragment container.
-  const fragment = document.createDocumentFragment()
-  // 3  create const B that acts as query selector and grabs the ID or class.  you will be appending the child HTML content in some form or fashion to this const (probably usng another variable)
   const addFoodToDom = document.querySelector(".foodList");
-  // 4  create loop to loop through D array
   for (let i = 0; i < json.length; i++) {
-    // 5  create let C that will be used to create section element
-      let foodObject = json[i];
-      // 6 se C to attach to attach elements and what not.  Have it equal D looped which contains the meat . 
-      // debugger
-      let food = foodAsHTML(foodObject.name, foodObject.ethnicity, foodObject.type)
-      // 7 Set A.appendChild(C)
-      // fragment.appendChild(food);
-      // 8 close loop
+    let foodObject = json[i];
+    let barcode = foodObject.barcode;
+    
+    fetch(`https://world.openfoodfacts.org/api/v0/product/` + barcode)
+    .then(response => response.json())
+    .then(productInfo => {
+      let ingredients = []
+      let country = productInfo.product.countries;
+      let sugar = productInfo.product.nutriments.sugars_serving;
+      for (let i = 0; i < productInfo.product.ingredients.length; i++) {
+        ingredients.push(productInfo.product.ingredients[i].text);
+      }
+      let parsedData = { ingredients, country, sugar };
+      return parsedData;
+    })
+    
+    .then(parsedData=> {
+      let food = foodAsHTML(foodObject.name, parsedData.ingredients, parsedData.country, parsedData.sugar);
+      return food;
+    })
+    .then(food => {
       addFoodToDom.innerHTML += food;
-    }
-    // 9 et B.appendChild(A)
-    // addFoodToDom.appendChild(fragment);
-  })
-  
-  
-
+    })
+  }
+})
